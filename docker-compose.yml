@@ -1,0 +1,18 @@
+services:
+    vue:
+        build:
+            context: .
+            args:
+                UID: ${UID:-1000}
+                GID: ${GID:-1000}
+        container_name: vue
+        working_dir: /workspace
+        volumes:
+            - ./:/workspace
+        ports:
+            - "8080:8080"
+        environment:
+            # Força hot reload funcionar em volume
+            - CHOKIDAR_USEPOLLING=true
+            - WATCHPACK_POLLING=true
+        tty: true
