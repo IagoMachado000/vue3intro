@@ -1,6 +1,44 @@
 <!-- HTML -->
 <template>
     <header class="header">
+        <h1
+            :class="{
+                'title-default': true,
+                'title-home': isHome,
+                [className]: true,
+            }"
+        >
+            Curso Vue 3
+        </h1>
+
+        <p :class="['text', { 'title-default': isHome }, className]">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+            eligendi dolorem dolore, expedita omnis quidem, fugiat tempora, est
+            ducimus laboriosam voluptates ipsam placeat dicta animi aspernatur?
+            Esse alias ullam est.
+        </p>
+
+        <p :class="pClass">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
+            eligendi dolorem dolore, expedita omnis quidem, fugiat tempora, est
+            ducimus laboriosam voluptates ipsam placeat dicta animi aspernatur?
+            Esse alias ullam est.
+        </p>
+
+        <p :style="{ color: 'aqua', 'background-color': 'black' }">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
+            ducimus odit debitis aut ullam maiores inventore quisquam dicta
+            provident quasi iusto ab, quod totam dolore neque reprehenderit
+            obcaecati, mollitia incidunt!
+        </p>
+
+        <p :style="styleClass">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
+            ducimus odit debitis aut ullam maiores inventore quisquam dicta
+            provident quasi iusto ab, quod totam dolore neque reprehenderit
+            obcaecati, mollitia incidunt!
+        </p>
+
         <nav>
             <ul class="menu">
                 <li v-for="item in menu" :key="item.name">
@@ -38,6 +76,14 @@ export default {
                 src: "https://placehold.co/200x100",
                 alt: "Descrição da imagem",
             },
+            className: "title-secondary",
+            isHome: true,
+            pClass: ["text", "text-secondary"],
+            styleClass: {
+                color: "red",
+                backgroundColor: "black",
+                "font-size": "20px",
+            },
         };
     },
 };
@@ -48,6 +94,24 @@ export default {
 .header {
     color: #fff;
     background: gray;
+}
+.title-default {
+    font-size: 32px;
+    color: blue;
+}
+.title-secondary {
+    font-size: 24px;
+    color: purple;
+}
+.title-home {
+    font-size: 40px;
+    color: orange;
+}
+.text {
+    color: yellow;
+}
+.text-secondary {
+    font-size: 14px;
 }
 .header .menu {
     list-style-type: none;
