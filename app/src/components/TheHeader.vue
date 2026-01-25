@@ -11,6 +11,8 @@
             </ul>
         </nav>
     </header>
+
+    <img :src="img.src" :alt="img.alt" />
 </template>
 
 <!-- JAVASCRIPT -->
@@ -32,6 +34,10 @@ export default {
                     uri: "/contact",
                 },
             ],
+            img: {
+                src: "https://placehold.co/200x100",
+                alt: "Descrição da imagem",
+            },
         };
     },
 };
