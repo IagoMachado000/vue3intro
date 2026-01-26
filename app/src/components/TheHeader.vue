@@ -8,8 +8,18 @@
                 [className]: true,
             }"
         >
-            Curso Vue 3
+            home
         </h1>
+
+        <h1 class="title" v-if="$slots.title">
+            <slot name="title" />
+        </h1>
+
+        <div class="description">
+            <slot name="description" />
+        </div>
+
+        Content de header - menu ...
 
         <p :class="['text', { 'title-default': isHome }, className]">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
@@ -87,7 +97,8 @@ export default {
         };
     },
     mounted() {
-        window.addEventListener("resize", this.resize);
+        // window.addEventListener("resize", this.resize);
+        console.log(this.$slots);
     },
     beforeUnmount() {
         // Destruir as nossas libs

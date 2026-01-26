@@ -1,6 +1,14 @@
 <template>
     <div>
-        <TheHeader v-if="showHeader"></TheHeader>
+        <TheHeader v-if="showHeader">
+            <!-- <template v-slot:title> Home </template> -->
+
+            <template v-slot:description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </template>
+
+            Home
+        </TheHeader>
         <h1>Hello World</h1>
         {{ name }}
         <br />
