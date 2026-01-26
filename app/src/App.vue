@@ -1,37 +1,30 @@
 <template>
-    <div>{{ user.firstName }} {{ user.lastName }}</div>
-    <br /><br />
-    <div>{{ fullName }}</div>
-
-    <br /><br />
-
-    <div v-for="todo in todos" :key="todo.id">
-        {{ todo.title }} <span>{{ todo.completed }}</span>
+    <div>
+        <input type="text" v-model="name" />
+        <br />
+        {{ name }}
     </div>
 
     <br /><br />
 
     <div>
-        <h2>Todos em aberto</h2>
-        <div v-for="todo in uncompletedTodos" :key="todo.id">
-            {{ todo.title }}
-        </div>
-
-        <h2>Todos completas</h2>
-        <div v-for="todo in completedTodos" :key="todo.id">
-            {{ todo.title }}
-        </div>
+        <input type="text" v-model="user.firstName" />
+        <br />
+        <input type="text" v-model="user.lastName" />
+        <br />
+        {{ user.firstName }} {{ user.lastName }}
     </div>
 
     <br /><br />
 
-    <div>
-        <h2>Todos</h2>
-        <div v-for="todo in todos" :key="todo.id">
-            <input type="checkbox" v-model="todo.completed" />
-            {{ todo.title }}
-        </div>
-    </div>
+    <select v-model="pageCount">
+        <option value="">Escolha</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+    </select>
+    <br />
+    {{ pageCount }}
 </template>
 
 <script>
@@ -39,53 +32,38 @@ export default {
     name: "App",
     data() {
         return {
+            name: "",
+            pageCount: 5,
             user: {
-                firstName: "John",
-                lastName: "Doe",
+                firstName: "",
+                lastName: "",
             },
-            todos: [
-                {
-                    userId: 1,
-                    id: 1,
-                    title: "delectus aut autem",
-                    completed: false,
-                },
-                {
-                    userId: 1,
-                    id: 2,
-                    title: "quis ut nam facilis et officia qui",
-                    completed: false,
-                },
-                {
-                    userId: 1,
-                    id: 3,
-                    title: "fugiat veniam minus",
-                    completed: false,
-                },
-                {
-                    userId: 1,
-                    id: 4,
-                    title: "et porro tempora",
-                    completed: true,
-                },
-                {
-                    userId: 1,
-                    id: 5,
-                    title: "laboriosam mollitia et enim quasi adipisci quia provident illum",
-                    completed: false,
-                },
-            ],
         };
     },
-    computed: {
-        fullName() {
-            return `${this.user.firstName} ${this.user.lastName}`;
+    watch: {
+        name(vl) {
+            if (vl.length >= 3) {
+                this.saveUserName();
+            }
         },
-        uncompletedTodos() {
-            return this.todos.filter((t) => !t.completed);
+        pageCount() {
+            this.changePage();
         },
-        completedTodos() {
-            return this.todos.filter((t) => t.completed);
+        user: {
+            handler() {
+                console.log("User alterado");
+            },
+            deep: true,
+        },
+    },
+    computed: {},
+    methods: {
+        saveUserName() {
+            console.log("AJAX");
+            console.log(this.name);
+        },
+        changePage() {
+            console.log("AJAX changePage");
         },
     },
 };
