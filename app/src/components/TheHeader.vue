@@ -86,6 +86,27 @@ export default {
             },
         };
     },
+    mounted() {
+        window.addEventListener("resize", this.resize);
+    },
+    beforeUnmount() {
+        // Destruir as nossas libs
+        // Eventos
+        // Listeners
+        console.log("beforeUnmount");
+
+        window.removeEventListener("resize", this.resize);
+
+        console.log("Evento removido");
+    },
+    unmounted() {
+        console.log("unmounted");
+    },
+    methods: {
+        resize($evt) {
+            console.log($evt);
+        },
+    },
 };
 </script>
 

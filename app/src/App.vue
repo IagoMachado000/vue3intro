@@ -1,71 +1,87 @@
 <template>
     <div>
-        <input type="text" v-model="name" />
-        <br />
+        <TheHeader v-if="showHeader"></TheHeader>
+        <h1>Hello World</h1>
         {{ name }}
-    </div>
-
-    <br /><br />
-
-    <div>
-        <input type="text" v-model="user.firstName" />
         <br />
-        <input type="text" v-model="user.lastName" />
+        <button @click="showHeader = !showHeader">
+            Ativar e desativar header
+        </button>
         <br />
-        {{ user.firstName }} {{ user.lastName }}
+        <input type="text" v-model="name" />
     </div>
-
-    <br /><br />
-
-    <select v-model="pageCount">
-        <option value="">Escolha</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-    </select>
-    <br />
-    {{ pageCount }}
 </template>
 
 <script>
+import TheHeader from "./components/TheHeader.vue";
+
 export default {
     name: "App",
+    components: { TheHeader },
     data() {
         return {
-            name: "",
-            pageCount: 5,
-            user: {
-                firstName: "",
-                lastName: "",
-            },
+            name: "John Doe",
+            showHeader: true,
         };
     },
-    watch: {
-        name(vl) {
-            if (vl.length >= 3) {
-                this.saveUserName();
-            }
-        },
-        pageCount() {
-            this.changePage();
-        },
-        user: {
-            handler() {
-                console.log("User alterado");
-            },
-            deep: true,
-        },
+
+    // Criação
+    // Preparar o componente
+    // Aja, inicializar algumas variáveis
+    // Não tem acesso ao template (DOM)
+
+    // Montagem
+    // Inicializar um lib externa (new Lib())
+    // Precisa de acesso ao template (DOM)
+    // Tem acesso ao template (DOM)
+
+    // Atualização
+    // Debug
+    // Update
+
+    // Desmontagem
+    // Remover tudo que for necessário para liberar memória (lib->destroy())
+
+    // HOOKS
+    beforeUpdate() {
+        console.log("beforeUpdate");
     },
+    updated() {
+        console.log("updated");
+    },
+    // beforeCreate() {
+    //     console.log("beforeCreate");
+    //     console.log("Estado:", this.name);
+    //     console.log("DOM:", this.$el);
+    // },
+    // created() {
+    //     console.log("created");
+    //     console.log("Estado:", this.name);
+    //     console.log("DOM:", this.$el);
+    // },
+    // beforeMount() {
+    //     console.log("beforeMount");
+    //     console.log("Estado:", this.name);
+    //     console.log("DOM:", this.$el);
+    // },
+    // mounted() {
+    //     console.log("mounted");
+    //     console.log("Estado:", this.name);
+    //     console.log("DOM:", this.$el);
+    // },
+    // beforeUnmount() {
+    //     console.log("beforeUnmount");
+    //     console.log("Estado:", this.name);
+    //     console.log("DOM:", this.$el);
+    // },
+    // unmounted() {
+    //     console.log("unmounted");
+    //     console.log("Estado:", this.name);
+    //     console.log("DOM:", this.$el);
+    // },
+    watch: {},
     computed: {},
-    methods: {
-        saveUserName() {
-            console.log("AJAX");
-            console.log(this.name);
-        },
-        changePage() {
-            console.log("AJAX changePage");
-        },
-    },
+    methods: {},
 };
 </script>
 
