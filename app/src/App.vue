@@ -1,41 +1,91 @@
 <template>
-    <div>
-        <button @click="onClick()">Enviar</button>
+    <div>{{ user.firstName }} {{ user.lastName }}</div>
+    <br /><br />
+    <div>{{ fullName }}</div>
+
+    <br /><br />
+
+    <div v-for="todo in todos" :key="todo.id">
+        {{ todo.title }} <span>{{ todo.completed }}</span>
     </div>
 
     <br /><br />
 
-    <div @mouseover="onMouseOver" @mouseout="onMouseOut">Mouse Over</div>
+    <div>
+        <h2>Todos em aberto</h2>
+        <div v-for="todo in uncompletedTodos" :key="todo.id">
+            {{ todo.title }}
+        </div>
+
+        <h2>Todos completas</h2>
+        <div v-for="todo in completedTodos" :key="todo.id">
+            {{ todo.title }}
+        </div>
+    </div>
 
     <br /><br />
 
-    <form action="https://google.com" @submit.prevent="onSubmit">
-        <input type="text" @keyup.esc="onKeyUp" />
-        <button type="submit">Enviar</button>
-    </form>
+    <div>
+        <h2>Todos</h2>
+        <div v-for="todo in todos" :key="todo.id">
+            <input type="checkbox" v-model="todo.completed" />
+            {{ todo.title }}
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
     name: "App",
     data() {
-        return {};
+        return {
+            user: {
+                firstName: "John",
+                lastName: "Doe",
+            },
+            todos: [
+                {
+                    userId: 1,
+                    id: 1,
+                    title: "delectus aut autem",
+                    completed: false,
+                },
+                {
+                    userId: 1,
+                    id: 2,
+                    title: "quis ut nam facilis et officia qui",
+                    completed: false,
+                },
+                {
+                    userId: 1,
+                    id: 3,
+                    title: "fugiat veniam minus",
+                    completed: false,
+                },
+                {
+                    userId: 1,
+                    id: 4,
+                    title: "et porro tempora",
+                    completed: true,
+                },
+                {
+                    userId: 1,
+                    id: 5,
+                    title: "laboriosam mollitia et enim quasi adipisci quia provident illum",
+                    completed: false,
+                },
+            ],
+        };
     },
-    methods: {
-        onClick() {
-            console.log("click");
+    computed: {
+        fullName() {
+            return `${this.user.firstName} ${this.user.lastName}`;
         },
-        onMouseOver(e) {
-            console.log("mouse over", e);
+        uncompletedTodos() {
+            return this.todos.filter((t) => !t.completed);
         },
-        onMouseOut() {
-            console.log("mouse out");
-        },
-        onSubmit() {
-            console.log("submit");
-        },
-        onKeyUp($e) {
-            console.log($e);
+        completedTodos() {
+            return this.todos.filter((t) => t.completed);
         },
     },
 };
