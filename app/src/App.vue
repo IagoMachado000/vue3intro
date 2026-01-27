@@ -2,7 +2,10 @@
     <nav>
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link> |
-        <router-link :to="rotaDinamica">Serviços</router-link>
+        <router-link :to="rotaDinamica">Serviços</router-link> |
+        <router-link :to="{ name: 'usuarios-editar', params: { id: 10 } }"
+            >Usuários</router-link
+        >
     </nav>
     <router-view />
 </template>
