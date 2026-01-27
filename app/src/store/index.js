@@ -35,7 +35,7 @@ export default createStore({
         },
     },
 
-    // alterações nos dados do state
+    // alterações nos dados do state (síncrono)
     mutations: {
         storeUser(state, data) {
             state.user = data;
@@ -48,6 +48,19 @@ export default createStore({
             state.cart.splice(i, 1);
         },
     },
-    actions: {},
+
+    // alterações nos dados do state (assíncrono)
+    actions: {
+        storeUser({ commit }, data) {
+            // ajax, promisse
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    commit("storeUser", data);
+                    resolve();
+                }, 3000);
+            });
+        },
+    },
+
     modules: {},
 });
