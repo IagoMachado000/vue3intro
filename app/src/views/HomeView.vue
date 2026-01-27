@@ -6,7 +6,17 @@
 
         <br /><br />
 
-        <button @click="updateUser()">Atualizar Perfil</button>
+        <div>
+            <div>
+                <p>
+                    {{
+                        `${$store.state.user.firstName} ${$store.state.user.lastName}`
+                    }}
+                </p>
+                <p>{{ $store.state.user.email }}</p>
+            </div>
+            <button @click="updateUser()">Atualizar Perfil</button>
+        </div>
     </div>
 </template>
 
@@ -28,7 +38,10 @@ export default {
                 email: "janedoe@email.com",
             };
 
-            this.$store.commit("storeUser", newUser);
+            // this.$store.commit("storeUser", newUser);
+            this.$store.dispatch("storeUser", newUser).then(() => {
+                console.log("terminou com sucesso!");
+            });
         },
     },
 };
