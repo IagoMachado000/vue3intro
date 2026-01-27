@@ -27,7 +27,13 @@ export default createStore({
         ],
         cart: [],
     },
-    getters: {},
+
+    // deriva propriedades, semelhante ao computed
+    getters: {
+        total(state) {
+            return state.cart.reduce((total, item) => (total += item.price), 0);
+        },
+    },
 
     // alterações nos dados do state
     mutations: {

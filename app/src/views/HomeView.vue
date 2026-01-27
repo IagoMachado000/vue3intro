@@ -1,5 +1,7 @@
 <template>
     <div class="home">
+        <div>Total: {{ $store.getters.total }}</div>
+
         <AppProducts></AppProducts>
 
         <br /><br />
