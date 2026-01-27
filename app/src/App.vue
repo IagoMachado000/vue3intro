@@ -17,15 +17,27 @@
         </button>
         <br />
         <input type="text" v-model="name" />
+
+        <br /><br /><br />
+
+        <div class="card text-small">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+            reiciendis sapiente repellat aliquid, placeat accusantium tempora.
+            Ab minus eius nesciunt quidem est dignissimos, numquam beatae. Atque
+            accusamus tempore culpa dolorum?
+        </div>
+
+        <BaseCard></BaseCard>
     </div>
 </template>
 
 <script>
+import BaseCard from "./components/BaseCard.vue";
 import TheHeader from "./components/TheHeader.vue";
 
 export default {
     name: "App",
-    components: { TheHeader },
+    components: { TheHeader, BaseCard },
     data() {
         return {
             name: "John Doe",
