@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 
 export default createStore({
-    // onde os dados são armazenados
+    // onde os dados são armazenados (DB)
     state: {
         user: {
             firstName: "John",
@@ -10,7 +10,13 @@ export default createStore({
         },
     },
     getters: {},
-    mutations: {},
+
+    // alterações nos dados do state
+    mutations: {
+        storeUser(state, data) {
+            state.user = data;
+        },
+    },
     actions: {},
     modules: {},
 });
