@@ -28,20 +28,29 @@
         </div>
 
         <BaseCard></BaseCard>
+
+        <br /><br /><br />
+
+        <BaseAlert :variant="variant">
+            <small>{{ text }}</small>
+        </BaseAlert>
     </div>
 </template>
 
 <script>
+import BaseAlert from "./components/BaseAlert.vue";
 import BaseCard from "./components/BaseCard.vue";
 import TheHeader from "./components/TheHeader.vue";
 
 export default {
     name: "App",
-    components: { TheHeader, BaseCard },
+    components: { TheHeader, BaseCard, BaseAlert },
     data() {
         return {
             name: "John Doe",
             showHeader: true,
+            variant: "danger",
+            text: "Houve um erro no envio do seu formulário",
         };
     },
 
