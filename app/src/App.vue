@@ -31,7 +31,7 @@
 
         <br /><br /><br />
 
-        <BaseAlert :variant="variant">
+        <BaseAlert v-if="showAlert" :variant="variant" @close="onClose()">
             <small>{{ text }}</small>
         </BaseAlert>
     </div>
@@ -51,6 +51,7 @@ export default {
             showHeader: true,
             variant: "danger",
             text: "Houve um erro no envio do seu formulário",
+            showAlert: true,
         };
     },
 
@@ -110,7 +111,12 @@ export default {
     // },
     watch: {},
     computed: {},
-    methods: {},
+    methods: {
+        onClose() {
+            this.showAlert = false;
+            console.log("on close");
+        },
+    },
 };
 </script>
 
