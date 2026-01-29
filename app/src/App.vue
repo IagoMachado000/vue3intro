@@ -1,20 +1,44 @@
 <template>
-    <!-- <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <router-link :to="rotaDinamica">Serviços</router-link> |
-        <router-link :to="{ name: 'usuarios-editar', params: { id: 10 } }"
-            >Usuários</router-link
-        >
-    </nav> -->
-    <router-view />
+    <p>{{ name }}</p>
+    <p>{{ user.first_name }} - {{ user.last_name }}</p>
+    <p>{{ admin.first_name }} - {{ admin.last_name }}</p>
+    <img alt="Vue logo" src="./assets/logo.png" @click="changeName" />
+    <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
+import { reactive, ref } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+
 export default {
-    data() {
+    name: "App",
+    components: {
+        HelloWorld,
+    },
+    setup() {
+        const user = reactive({
+            first_name: "John",
+            last_name: "Doe",
+        });
+
+        const admin = ref({
+            first_name: "Admin",
+            last_name: "Master",
+        });
+
+        let name = "Fulano";
+
+        const changeName = () => {
+            alert("alterou");
+            user.first_name = "Jane";
+            admin.value.first_name = "Ciclano";
+        };
+
         return {
-            rotaDinamica: { name: "servicos" },
+            user,
+            admin,
+            name,
+            changeName,
         };
     },
 };
@@ -24,19 +48,8 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
-}
-
-nav {
-    padding: 30px;
-}
-
-nav a {
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-    color: #42b983;
+    margin-top: 60px;
 }
 </style>
