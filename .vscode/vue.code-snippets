@@ -1,0 +1,19 @@
+{
+    "Vue 3 Boilerplate": {
+        "prefix": "vue3",
+        "body": [
+            "<template>",
+            "  <div></div>",
+            "</template>",
+            "",
+            "<script>",
+            "export default {",
+            "}",
+            "</script>",
+            "",
+            "<style>",
+            "</style>",
+        ],
+        "description": "Boilerplate básico Vue 3",
+    },
+}
