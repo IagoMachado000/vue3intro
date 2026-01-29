@@ -1,44 +1,55 @@
 <template>
-    <p>{{ name }}</p>
+    <h5>User</h5>
     <p>{{ user.first_name }} - {{ user.last_name }}</p>
-    <p>{{ admin.first_name }} - {{ admin.last_name }}</p>
-    <img alt="Vue logo" src="./assets/logo.png" @click="changeName" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+
+    <h5>fullname</h5>
+    <p>{{ fullName }}</p>
+
+    <button @click="user.first_name = 'Ciclano'">Atualizar</button>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { computed, ref, watch } from "vue";
 
 export default {
     name: "App",
-    components: {
-        HelloWorld,
-    },
+    components: {},
+
+    // options api
+    // computed: {
+    //     fullName() {
+    //         return ''
+    //     }
+    // },
+
     setup() {
-        const user = reactive({
+        const user = ref({
             first_name: "John",
             last_name: "Doe",
         });
 
-        const admin = ref({
-            first_name: "Admin",
-            last_name: "Master",
-        });
+        const fullName = computed(
+            () => `${user.value.first_name} - ${user.value.last_name}`,
+        );
 
-        let name = "Fulano";
+        watch(
+            user,
+            () => {
+                console.log("Lógica cabulosa");
+            },
+            { deep: true },
+        );
 
-        const changeName = () => {
-            alert("alterou");
-            user.first_name = "Jane";
-            admin.value.first_name = "Ciclano";
-        };
+        watch(
+            () => user.value.first_name,
+            () => {
+                console.log("Lógica cabulosa 2");
+            },
+        );
 
         return {
             user,
-            admin,
-            name,
-            changeName,
+            fullName,
         };
     },
 };
