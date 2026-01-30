@@ -5,6 +5,7 @@
     >
         <input
             v-model="title"
+            @keyup.enter="updateTodo"
             placeholder="Adicione um novo item ..."
             type="text"
             class="bg-gray-900 placeholder-gray-500 text-gray-500 font-light focus:outline-none block w-full appearance-none leading-normal py-3 pr-3"
