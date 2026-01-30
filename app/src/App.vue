@@ -17,10 +17,12 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import TodoEmpty from "./components/TodoEmpty.vue";
 import TodoFormAdd from "./components/TodoFormAdd.vue";
 import TodoItems from "./components/TodoItems.vue";
 import TodoSpinner from "./components/TodoSpinner.vue";
+import { useStore } from "vuex";
 
 export default {
     name: "App",
@@ -31,20 +33,16 @@ export default {
         TodoEmpty,
     },
 
-    data() {
-        return {
-            loading: false,
-        };
-    },
+    setup() {
+        const loading = ref(false);
+        const store = useStore();
 
-    // hook chamado logo após a instância do componente ser inicializada
-    // ideal para:
-    // configurar dados
-    // chamadas API (Ajax)
-    // inicializar variáveis ou configurar observadores
-    created() {
-        this.loading = true;
-        this.$store.dispatch("getTodos").finally(() => (this.loading = false));
+        loading.value = true;
+        store.dispatch("getTodos").finally(() => (loading.value = false));
+
+        return {
+            loading,
+        };
     },
 };
 </script>
