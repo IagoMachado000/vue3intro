@@ -1,9 +1,3 @@
 {
-  "todos": [
-    {
-      "title": "teste 1 akakakka",
-      "completed": true,
-      "id": "fdef"
-    }
-  ]
+  "todos": []
 }
