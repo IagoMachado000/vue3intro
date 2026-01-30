@@ -21,24 +21,30 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { useStore } from "vuex";
+
 export default {
     name: "TodoFormAdd",
-    data() {
-        return {
-            title: "",
-        };
-    },
-    methods: {
-        addTodo() {
-            if (!this.title) return;
+    setup() {
+        const title = ref("");
+        const store = useStore();
 
-            this.$store
+        const addTodo = () => {
+            if (!title.value) return;
+
+            store
                 .dispatch("addTodo", {
-                    title: this.title,
+                    title: title.value,
                     completed: false,
                 })
-                .finally(() => (this.title = ""));
-        },
+                .finally(() => (title.value = ""));
+        };
+
+        return {
+            title,
+            addTodo,
+        };
     },
 };
 </script>
